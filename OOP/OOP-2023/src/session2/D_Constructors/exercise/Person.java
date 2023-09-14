@@ -15,15 +15,32 @@ import feedback.Feedback;
  **/
 class Person {
 
+    String firstName, middleName, lastName;
+
+    public Person(String firstName, String middleName, String lastName){
+        this.firstName = firstName;
+        this.middleName = middleName;
+        this.lastName = lastName;
+    }
+
+    public Person(String firstName, String lastName){
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
 
     public static void main(String[] args) {
 
+        Person Anders = new Person("Anders", "Mueller", "Madsen");
+        Person Lars = new Person("Lars", "Rasmussen");
 
+        System.out.println("Anders " + Anders.hasMiddleName());
+        System.out.println("Lars " + Lars.hasMiddleName());
 
+        System.out.println(Anders.toString());
+        System.out.println(Lars.toString());
 
         /***** UNCOMMENT BELOW TO PROVIDE FEEDBACK ****/
 
-        /*
         //Did you have time to finish the exercise?
         boolean I_did_finish = true;
 
@@ -34,7 +51,22 @@ class Person {
         String comment = "No comments";
 
         feedback.Feedback.submit("session2_D_Constructors", I_did_finish, I_did_understand, comment);
-        */
 
+    }
+
+    public boolean hasMiddleName(){
+        if (this.middleName == null){
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    public String toString(){
+        if (this.hasMiddleName()){
+            return this.firstName + ", " + this.middleName.substring(0, 1) + "., " + this.lastName;
+        } else {
+            return this.firstName + ", " + this.lastName;
+        }
     }
 }

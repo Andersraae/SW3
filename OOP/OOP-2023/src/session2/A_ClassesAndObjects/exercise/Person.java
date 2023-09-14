@@ -9,9 +9,19 @@ import feedback.Feedback;
  */
 public class Person {
 
+    String firstName, lastName;
+
+    int age;
+
     public static void main(String[] args) {
 
+        Person Anders = new Person();
 
+        Anders.firstName = "Anders";
+        Anders.lastName = "Madsen";
+        Anders.age = 28;
+
+        System.out.println(Anders.firstName + ", " + Anders.lastName + ", " + Anders.age);
 
         /***** UNCOMMENT BELOW TO PROVIDE FEEDBACK ****/
 
