@@ -1,7 +1,5 @@
 package session2.E_Encapsulation.exercise;
 
-import session2.E_Encapsulation.People.PrivatePerson;
-
 /**
  * Exercise:
  *  * Now a Person can have a first name, a last name and, optionally, a middle name. And also an age.

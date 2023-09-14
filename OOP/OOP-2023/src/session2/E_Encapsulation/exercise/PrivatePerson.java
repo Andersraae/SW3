@@ -1,4 +1,4 @@
-package session2.E_Encapsulation.People;
+package session2.E_Encapsulation.exercise;
 
 public class PrivatePerson {
     private String firstName, middleName, lastName;
