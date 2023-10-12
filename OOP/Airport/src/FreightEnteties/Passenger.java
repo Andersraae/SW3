@@ -3,7 +3,7 @@ package FreightEnteties;
 import Planes.PassengerPlane;
 import Planes.Plane;
 
-public class Passenger extends FreightEntity {
+public class Passenger extends Freight {
     String name;
     PassengerPlane plane;
 
