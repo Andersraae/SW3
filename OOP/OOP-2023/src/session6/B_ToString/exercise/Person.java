@@ -3,7 +3,7 @@ package session6.B_ToString.exercise;
 /**
  * Exercise:
  * a) Run the code below and see the output.
- * b) Implement the toString method. If a person does not have middle name, it should be
+ * b) Overwrite the toString method. If a person does not have middle name, it should be
  * properly displayed.
  * c) Run again the code below and see the output.
  */
@@ -29,6 +29,23 @@ public class Person {
     }
 
 
+    @Override
+    public String toString() {
+        if (middleName.isEmpty()){
+            return "Person{" +
+                    "firstName='" + firstName + '\'' +
+                    ", lastName='" + lastName + '\'' +
+                    ", age=" + age +
+                    '}';
+        } else {
+            return "Person{" +
+                    "firstName='" + firstName + '\'' +
+                    ", middleName='" + middleName + '\'' +
+                    ", lastName='" + lastName + '\'' +
+                    ", age=" + age +
+                    '}';
+        }
+    }
 
     public static void main(String[] args) {
 
@@ -40,7 +57,6 @@ public class Person {
         System.out.println(person2);
 
         /***** UNCOMMENT BELOW TO PROVIDE FEEDBACK ****/
-        /*
         //Did you have time to finish the exercise?
         boolean I_did_finish = true;
 
@@ -51,7 +67,6 @@ public class Person {
         String comment = "No comments";
 
         feedback.Feedback.submit("session6_B", I_did_finish, I_did_understand, comment);
-        */
     }
 
 }
