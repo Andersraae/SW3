@@ -1,4 +1,5 @@
 package Planes;
 
-public class PassengerPlane {
+public class PassengerPlane extends Plane {
+
 }

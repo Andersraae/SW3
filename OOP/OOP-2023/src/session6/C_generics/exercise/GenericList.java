@@ -21,29 +21,29 @@ public class GenericList<T> {
         array[count++]=o;
     }
 
-    public Object get(int i) {
+    public T get(int i) {
         return array[i];
     }
 
     public static void main(String[] args) {
 
-        GenericList genericList = new GenericList<>();
+        GenericList genericList = new GenericList<Giraff>();
 
         Giraff giraff = new Giraff();
         genericList.add(giraff);
 
-        Giraff giraff1 = (Giraff) genericList.get(0);
+        Book book = (Book) genericList.get(0);
 
-        /***** UNCOMMENT BELOW TO PROVIDE FEEDBACK ****/
-        //Did you have time to finish the exercise?
-        boolean I_did_finish = true;
-
-        //Did you understand the concepts used in the exercise?
-        boolean I_did_understand = true;
-
-        //Any comments
-        String comment = "No comments";
-
-        feedback.Feedback.submit("session6_C", I_did_finish, I_did_understand, comment);
+//        /***** UNCOMMENT BELOW TO PROVIDE FEEDBACK ****/
+//        //Did you have time to finish the exercise?
+//        boolean I_did_finish = true;
+//
+//        //Did you understand the concepts used in the exercise?
+//        boolean I_did_understand = true;
+//
+//        //Any comments
+//        String comment = "No comments";
+//
+//        feedback.Feedback.submit("session6_C", I_did_finish, I_did_understand, comment);
     }
 }

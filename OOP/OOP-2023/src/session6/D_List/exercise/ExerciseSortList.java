@@ -1,5 +1,7 @@
 package session6.D_List.exercise;
 
+import session6.D_List.StringAlphabeticalOrder;
+
 import java.util.*;
 
 /**
@@ -13,26 +15,31 @@ public class ExerciseSortList {
         people.add(new Person("Anders", 23));
         people.add(new Person("Mads", 28));
         people.add(new Person("Jakob", 21));
-
-        //people.sort(comparator);
+        Comparator<Person> comparatorAlphabetical = new ReverseAlphabetical();
+        people.sort(comparatorAlphabetical);
 
         for (Person person: people){
             System.out.println(person);
         }
 
-        /***** UNCOMMENT BELOW TO PROVIDE FEEDBACK ****/
-        /*
-        //Did you have time to finish the exercise?
-        boolean I_did_finish = true;
+        Comparator<Person> comparatorHighToLow = new HighToLow();
+        people.sort(comparatorHighToLow);
 
-        //Did you understand the concepts used in the exercise?
-        boolean I_did_understand = true;
+        for (Person person: people){
+            System.out.println(person);
+        }
 
-        //Any comments
-        String comment = "No comments";
-
-        feedback.Feedback.submit("session6_D", I_did_finish, I_did_understand, comment);
-        */
+//        /***** UNCOMMENT BELOW TO PROVIDE FEEDBACK ****/
+//        //Did you have time to finish the exercise?
+//        boolean I_did_finish = true;
+//
+//        //Did you understand the concepts used in the exercise?
+//        boolean I_did_understand = true;
+//
+//        //Any comments
+//        String comment = "No comments";
+//
+//        feedback.Feedback.submit("session6_D", I_did_finish, I_did_understand, comment);
     }
 
 }

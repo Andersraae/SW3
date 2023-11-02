@@ -4,11 +4,11 @@ import java.util.Date;
 
 public class Flight {
 
-    int flightId;
+    private int flightId;
 
-    Plane assignedPlane;
+    private Plane assignedPlane;
 
-    Date departureTime, arrivalTime;
+    private Date departureTime, arrivalTime;
 
     public Flight(int flightId, Plane assignedPlane, Date departureTime, Date arrivalTime) {
         this.flightId = flightId;

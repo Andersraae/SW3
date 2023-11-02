@@ -3,9 +3,9 @@ package Planes;
 import java.util.Date;
 
 public abstract class Plane {
-    int planeId;
-    Date departureTime, arrivalTime;
-    String state;
+    private int planeId;
+    private Date departureTime, arrivalTime;
+    private String state;
 
     public int getPlaneId() {
         return planeId;
