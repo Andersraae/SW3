@@ -7,6 +7,13 @@ public abstract class Plane {
     private Date departureTime, arrivalTime;
     private String state;
 
+    public Plane(int planeId, Date departureTime, Date arrivaltime, String state) {
+        this.planeId = planeId;
+        this.departureTime = departureTime;
+        this.arrivalTime = arrivaltime;
+        this.state = state;
+    }
+
     public int getPlaneId() {
         return planeId;
     }
