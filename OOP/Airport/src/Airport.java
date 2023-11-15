@@ -1,11 +1,12 @@
-import Planes.PassengerPlane;
+import Planes.Flight;
 import Planes.Plane;
 
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 public class Airport {
 
-    private HashSet<Plane> planes;
+    private Set<Plane> planes;
     private String country, city;
     private int planeCapacity;
 
@@ -41,12 +42,18 @@ public class Airport {
     public void changeDeparture(int planeId, Date newDepartureTime){
         for (Plane plane: this.planes) {
             if (plane.getPlaneId() == planeId) {
-                Date oldDepartureTime = plane.getDepartureTime();
-                int departureDifference = Math.abs(oldDepartureTime.compareTo(newDepartureTime));
-                plane.setDepartureTime(newDepartureTime);
-                plane.setArrivalTime(new Date(((int) plane.getArrivalTime().getTime()) + departureDifference));
+                Flight planeFlight = plane.getFlight();
+                Date oldDepartureTime = planeFlight.getDepartureTime();
+                // Calculate time difference in milliseconds (getTime() return milliseconds)
+                long departureDifference = TimeUnit.MILLISECONDS.convert(newDepartureTime.getTime()-oldDepartureTime.getTime(), TimeUnit.MILLISECONDS);
+                planeFlight.setDepartureTime(newDepartureTime);
+                planeFlight.setArrivalTime(new Date((planeFlight.getArrivalTime().getTime()) + departureDifference));
             }
         }
     }
 
+
+    public Set<Plane> getPlanes() {
+        return planes;
+    }
 }

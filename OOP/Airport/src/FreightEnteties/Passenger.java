@@ -3,7 +3,6 @@ package FreightEnteties;
 import Planes.PassengerPlane;
 import Planes.Plane;
 
-import java.util.List;
 import java.util.Set;
 
 public class Passenger extends Freight {

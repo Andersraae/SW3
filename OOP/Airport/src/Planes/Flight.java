@@ -1,4 +1,4 @@
-import Planes.Plane;
+package Planes;
 
 import java.util.Date;
 
@@ -15,6 +15,23 @@ public class Flight {
         this.assignedPlane = assignedPlane;
         this.departureTime = departureTime;
         this.arrivalTime = arrivalTime;
+    }
+
+
+    public void setDepartureTime(Date departureTime) {
+        this.departureTime = departureTime;
+    }
+
+    public Date getDepartureTime() {
+        return departureTime;
+    }
+
+    public void setArrivalTime(Date arrivalTime) {
+        this.arrivalTime = arrivalTime;
+    }
+
+    public Date getArrivalTime() {
+        return arrivalTime;
     }
 
     long getFlightTime(){
