@@ -6,11 +6,8 @@ public class PassengerPlane extends Plane {
 
     private int passengerAmount;
 
-    public PassengerPlane (int planeId, String state, int pasesngerAmount) {
-        super(planeId, state);
-        this.passengerAmount = pasesngerAmount;
+    public PassengerPlane(int planeId, int passengerAmount) {
+        super(planeId);
+        this.passengerAmount = passengerAmount;
     }
-
-
-
 }

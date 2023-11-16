@@ -1,6 +1,7 @@
 import Planes.Flight;
 import Planes.PassengerPlane;
 import Planes.Plane;
+import Planes.PlaneStatus;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -19,7 +20,6 @@ public class Main {
 
         copenhagenAirport.addPlane(new PassengerPlane(
                 1,
-                "Awaiting",
                 2));
         for (Plane plane: copenhagenAirport.getPlanes()){
             if (plane.getPlaneId() == 1){

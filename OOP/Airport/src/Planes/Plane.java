@@ -5,25 +5,24 @@ import java.util.Date;
 
 public abstract class Plane {
     private final int planeId;
-    private String state;
+    private PlaneStatus status;
     private Flight flight;
 
-    public Plane(int planeId, String state) {
+    public Plane(int planeId) {
         this.planeId = planeId;
-        this.state = state;
+        this.status = PlaneStatus.INACTIVE;
     }
 
     public int getPlaneId() {
         return planeId;
     }
 
-    public String getState() {
-        return state;
+    public PlaneStatus getStatus() {
+        return this.status;
     }
 
-
-    public void setState(String state) {
-        this.state = state;
+    public void setState(PlaneStatus status) {
+        this.status = status;
     }
 
     public void setFlight(Flight flight) {
