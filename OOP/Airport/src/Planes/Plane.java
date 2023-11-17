@@ -1,8 +1,5 @@
 package Planes;
 
-import java.util.Date;
-
-
 public abstract class Plane {
     private final int planeId;
     private PlaneStatus status;
