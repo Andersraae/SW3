@@ -4,5 +4,6 @@ public enum PlaneStatus {
     LOADING,
     FLYING,
     UNLOADING,
-    INACTIVE
+    INACTIVE,
+    BOARDING,
 }

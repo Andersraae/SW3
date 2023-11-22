@@ -6,10 +6,22 @@ import Planes.PlaneStatus;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 public class Main {
     public static void main(String[] args) {
+
+        Runnable updateAirportStatus = new Runnable() {
+            public void run() {
+//                Update flight listener tingen?
+            }
+        };
+
+        ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
+        executor.scheduleAtFixedRate(updateAirportStatus, 0, 3, TimeUnit.SECONDS);
+
         Airport copenhagenAirport = new Airport("Denmark", "Copenhagen", 200);
         Airport tarmAirport = new Airport("Denmark", "Tarm", 2);
         Date lastChristmas = new Date(2022 - 1900, Calendar.DECEMBER, 24, 18, 30);

@@ -1,6 +1,5 @@
 import Planes.Flight;
 import Planes.Plane;
-import Planes.PlaneStatus;
 
 import java.util.*;
 import java.util.concurrent.TimeUnit;
@@ -31,13 +30,6 @@ public class Airport {
 
 
 //    Handle planes
-    public void updatePlaneState(int planeId, PlaneStatus status){
-        for (Plane plane: this.planes) {
-            if (plane.getPlaneId() == planeId) {
-                plane.setState(status);
-            }
-        }
-    }
 
 //    Lets the airport update the planes departure times
     public void changeDeparture(int planeId, Date newDepartureTime){

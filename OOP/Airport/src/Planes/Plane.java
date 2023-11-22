@@ -18,10 +18,6 @@ public abstract class Plane {
         return this.status;
     }
 
-    public void setState(PlaneStatus status) {
-        this.status = status;
-    }
-
     public void setFlight(Flight flight) {
         this.flight = flight;
     }
