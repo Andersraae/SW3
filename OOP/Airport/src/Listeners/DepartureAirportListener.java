@@ -2,6 +2,7 @@ package Listeners;
 
 import AdministatingEntities.Airport;
 import AdministatingEntities.Flight;
+import Planes.FlightStatus;
 
 public class DepartureAirportListener implements FlightListener {
 
@@ -14,5 +15,8 @@ public class DepartureAirportListener implements FlightListener {
     @Override
     public void flightUpdate(Flight flight) {
         this.airport.displayDepartures();
+        if (flight.getStatus() == FlightStatus.IN_FLIGHT){
+            this.airport.removePlane(flight.getAssignedPlane());
+        }
     }
 }

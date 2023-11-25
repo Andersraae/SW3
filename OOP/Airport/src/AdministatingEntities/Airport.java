@@ -21,23 +21,7 @@ public class Airport {
         this.planes = HashSet.newHashSet(planeCapacity);
     }
 
-    public void addPlane(Plane plane) {
-        this.planes.add(plane);
-    }
-
-
-//    Handle planes
-
-    //    Lets the airport update the planes departure times
-    public void changeDeparture(Plane plane, Date newDepartureTime) {
-        Flight planeFlight = plane.getFlight();
-        Date oldDepartureTime = planeFlight.getDepartureTime();
-        // Calculate time difference in milliseconds (getTime() return milliseconds)
-        long departureDifference = TimeUnit.MILLISECONDS.convert(newDepartureTime.getTime() - oldDepartureTime.getTime(), TimeUnit.MILLISECONDS);
-        planeFlight.setDepartureTime(newDepartureTime);
-        planeFlight.setArrivalTime(new Date((planeFlight.getArrivalTime().getTime()) + departureDifference));
-
-    }
+    // DISPLAY
 
     public void displayArrivals(Flight updatedFlight) {
         this.makeFrame("Arrivals");
@@ -71,6 +55,29 @@ public class Airport {
         System.out.println("+" + "-".repeat(FRAME_WIDTH) + "+");
         System.out.printf("|%-" + ((FRAME_WIDTH) / 2 + "s%-" + ((FRAME_WIDTH + 1) / 2)) + "s|%n", "", this.getCity() + " " + title);
         System.out.println("+" + "-".repeat(FRAME_WIDTH) + "+");
+    }
+
+
+    // HANDLE PLANES
+
+    public void addPlane(Plane plane) {
+        this.planes.add(plane);
+    }
+
+    public void removePlane(Plane plane) {
+            this.planes.remove(plane);
+        }
+
+
+    //    Lets the airport update the planes departure times
+    public void changeDeparture(Plane plane, Date newDepartureTime) {
+        Flight planeFlight = plane.getFlight();
+        Date oldDepartureTime = planeFlight.getDepartureTime();
+        // Calculate time difference in milliseconds (getTime() return milliseconds)
+        long departureDifference = TimeUnit.MILLISECONDS.convert(newDepartureTime.getTime() - oldDepartureTime.getTime(), TimeUnit.MILLISECONDS);
+        planeFlight.setDepartureTime(newDepartureTime);
+        planeFlight.setArrivalTime(new Date((planeFlight.getArrivalTime().getTime()) + departureDifference));
+
     }
 
     public Set<Plane> getPlanes() {

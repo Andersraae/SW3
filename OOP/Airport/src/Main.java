@@ -14,19 +14,19 @@ public class Main {
         Airport copenhagenAirport = new Airport("Denmark", "Copenhagen", 200);
         Airport tarmAirport = new Airport("Denmark", "Tarm", 2);
 
-//        // New flight from Copgenhagen to Tarm
-//        Plane newplane = new PassengerPlane(2);
-//        copenhagenAirport.addPlane(newplane);
-//        Flight cphToTarm = new Flight(
-//                1,
-//                newplane,
-//                new Date(2022 - 1900, Calendar.DECEMBER, 24, 18, 30),
-//                new Date(2022 - 1900, Calendar.DECEMBER, 24, 19, 0),
-//                tarmAirport
-//        );
-//        cphToTarm.addListener(new DepartureAirportListener(copenhagenAirport));
-//        cphToTarm.addListener(new DestinationAirportListener(tarmAirport));
-//        newplane.setFlight(cphToTarm);
+        // New flight from Copgenhagen to Tarm
+        Plane newplane = new PassengerPlane(2);
+        copenhagenAirport.addPlane(newplane);
+        Flight cphToTarm = new Flight(
+                1,
+                newplane,
+                new Date(2022 - 1900, Calendar.DECEMBER, 24, 18, 30),
+                new Date(2022 - 1900, Calendar.DECEMBER, 24, 19, 0),
+                tarmAirport
+        );
+        cphToTarm.addListener(new DepartureAirportListener(copenhagenAirport));
+        cphToTarm.addListener(new DestinationAirportListener(tarmAirport));
+        newplane.setFlight(cphToTarm);
 
 
         // New flight from Tarm to Copenhagen
