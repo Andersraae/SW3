@@ -13,6 +13,6 @@ public class DestinationAirportListener implements FlightListener {
 
     @Override
     public void flightUpdate(Flight flight) {
-        this.airport.displayArrivals();
+        this.airport.displayArrivals(flight);
     }
 }

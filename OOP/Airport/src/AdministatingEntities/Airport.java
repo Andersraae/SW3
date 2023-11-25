@@ -29,23 +29,24 @@ public class Airport {
 //    Handle planes
 
     //    Lets the airport update the planes departure times
-    public void changeDeparture(int planeId, Date newDepartureTime) {
-        for (Plane plane : this.planes) {
-            if (plane.getPlaneId() == planeId) {
-                Flight planeFlight = plane.getFlight();
-                Date oldDepartureTime = planeFlight.getDepartureTime();
-                // Calculate time difference in milliseconds (getTime() return milliseconds)
-                long departureDifference = TimeUnit.MILLISECONDS.convert(newDepartureTime.getTime() - oldDepartureTime.getTime(), TimeUnit.MILLISECONDS);
-                planeFlight.setDepartureTime(newDepartureTime);
-                planeFlight.setArrivalTime(new Date((planeFlight.getArrivalTime().getTime()) + departureDifference));
-            }
-        }
+    public void changeDeparture(Plane plane, Date newDepartureTime) {
+        Flight planeFlight = plane.getFlight();
+        Date oldDepartureTime = planeFlight.getDepartureTime();
+        // Calculate time difference in milliseconds (getTime() return milliseconds)
+        long departureDifference = TimeUnit.MILLISECONDS.convert(newDepartureTime.getTime() - oldDepartureTime.getTime(), TimeUnit.MILLISECONDS);
+        planeFlight.setDepartureTime(newDepartureTime);
+        planeFlight.setArrivalTime(new Date((planeFlight.getArrivalTime().getTime()) + departureDifference));
+
     }
 
-    public void displayArrivals() {
-        this.makeFrame();
-        for (Plane plane : this.getPlanes()) {
+    public void displayArrivals(Flight updatedFlight) {
+        this.makeFrame("Arrivals");
+        HashSet<Plane> planes = new HashSet<>(this.getPlanes());
+        planes.add(updatedFlight.getAssignedPlane());
+
+        for (Plane plane : planes) {
             Flight flight = plane.getFlight();
+
             if (flight.getStatus() == FlightStatus.IN_FLIGHT || flight.getStatus() == FlightStatus.UNLOADING) {
                 System.out.printf("| Flight Status: %-4s | Departure: %-8s | Arrival: %-8s | Destination: %-15s |%n",
                         flight.getStatus(), flight.getDepartureTime(), flight.getArrivalTime(), flight.getDestination().getCity());
@@ -55,7 +56,7 @@ public class Airport {
     }
 
     public void displayDepartures() {
-        this.makeFrame();
+        this.makeFrame("Departures");
         for (Plane plane : this.getPlanes()) {
             Flight flight = plane.getFlight();
             if (flight.getStatus() == FlightStatus.LOADING) {
@@ -66,9 +67,9 @@ public class Airport {
         }
     }
 
-    private void makeFrame() {
+    private void makeFrame(String title) {
         System.out.println("+" + "-".repeat(FRAME_WIDTH) + "+");
-        System.out.printf("|%-" + ((FRAME_WIDTH) / 2 + "s%-" + ((FRAME_WIDTH + 1) / 2)) + "s|%n", "", "Airport Status");
+        System.out.printf("|%-" + ((FRAME_WIDTH) / 2 + "s%-" + ((FRAME_WIDTH + 1) / 2)) + "s|%n", "", this.getCity() + " " + title);
         System.out.println("+" + "-".repeat(FRAME_WIDTH) + "+");
     }
 

@@ -37,10 +37,14 @@ public class Flight {
     public void activateFlight() {
         Runnable update = new Runnable() {
             public void run() {
+                FlightStatus oldStatus = Flight.this.getStatus();
                 Flight.this.updateStatus();
-
-                for (FlightListener listener : listeners) {
-                    listener.flightUpdate(Flight.this);
+                if (oldStatus != Flight.this.getStatus()){
+                    for (FlightListener listener : listeners) {
+                        listener.flightUpdate(Flight.this);
+                        System.out.println();
+                    }
+                    for (int i = 0; i < 10; ++i) System.out.println();
                 }
             }
         };
@@ -51,17 +55,19 @@ public class Flight {
 
     public void updateStatus() {
         Date now = new Date();
-        long timeUntilDepartue = TimeUnit.MINUTES.convert(Flight.this.getDepartureTime().getTime() - now.getTime(), TimeUnit.MILLISECONDS);
-        long timeSinceArrival = TimeUnit.MINUTES.convert(Flight.this.getArrivalTime().getTime() - now.getTime(), TimeUnit.MILLISECONDS);
+        long timeUntilDepartue = TimeUnit.MINUTES.convert(this.getDepartureTime().getTime() - now.getTime(), TimeUnit.MILLISECONDS);
+        long timeSinceArrival = TimeUnit.MINUTES.convert(now.getTime() - this.getArrivalTime().getTime(), TimeUnit.MILLISECONDS);
 
         if (timeUntilDepartue <= 30 && timeUntilDepartue > 0) {
-            Flight.this.setStatus(FlightStatus.LOADING);
-        } else if (timeUntilDepartue <= 0 && timeSinceArrival < 0) {
-            Flight.this.setStatus(FlightStatus.IN_FLIGHT);
+            this.setStatus(FlightStatus.LOADING);
+        } else if (timeUntilDepartue >= 0 && timeSinceArrival < 0) {
+            this.setStatus(FlightStatus.IN_FLIGHT);
         } else if (timeSinceArrival >= 0 && timeSinceArrival < 30) {
-            Flight.this.setStatus(FlightStatus.UNLOADING);
+            this.setStatus(FlightStatus.UNLOADING);
         } else if (timeSinceArrival >= 30) {
-            Flight.this.setStatus(FlightStatus.INACTIVE);
+            this.setStatus(FlightStatus.INACTIVE);
+        } else {
+            this.setStatus(FlightStatus.INACTIVE);
         }
     }
 

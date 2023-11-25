@@ -14,34 +14,39 @@ public class Main {
         Airport copenhagenAirport = new Airport("Denmark", "Copenhagen", 200);
         Airport tarmAirport = new Airport("Denmark", "Tarm", 2);
 
-        // Add new plane to copenhagen
-        copenhagenAirport.addPlane(new PassengerPlane(
+//        // New flight from Copgenhagen to Tarm
+//        Plane newplane = new PassengerPlane(2);
+//        copenhagenAirport.addPlane(newplane);
+//        Flight cphToTarm = new Flight(
+//                1,
+//                newplane,
+//                new Date(2022 - 1900, Calendar.DECEMBER, 24, 18, 30),
+//                new Date(2022 - 1900, Calendar.DECEMBER, 24, 19, 0),
+//                tarmAirport
+//        );
+//        cphToTarm.addListener(new DepartureAirportListener(copenhagenAirport));
+//        cphToTarm.addListener(new DestinationAirportListener(tarmAirport));
+//        newplane.setFlight(cphToTarm);
+
+
+        // New flight from Tarm to Copenhagen
+        Plane anotherPlane = new PassengerPlane(2);
+        tarmAirport.addPlane(anotherPlane);
+        Date now = new Date();
+        Flight tarmToCph = new Flight(
                 1,
-                2));
+                anotherPlane,
+                new Date(now.getTime() + 62_000),
+                new Date(now.getTime() + 122_000),
+                copenhagenAirport
+        );
+        tarmToCph.addListener(new DepartureAirportListener(tarmAirport));
+        tarmToCph.addListener(new DestinationAirportListener(copenhagenAirport));
+        anotherPlane.setFlight(tarmToCph);
 
-        for (Plane plane : copenhagenAirport.getPlanes()) {
-            if (plane.getPlaneId() == 1) {
-                Flight theflitght = new Flight(
-                        1,
-                        plane,
-                        new Date(2022 - 1900, Calendar.DECEMBER, 24, 18, 30),
-                        new Date(2022 - 1900, Calendar.DECEMBER, 24, 19, 0),
-                        tarmAirport
-                );
 
-                theflitght.addListener(new DepartureAirportListener(copenhagenAirport));
-                theflitght.addListener(new DestinationAirportListener(tarmAirport));
-                plane.setFlight(theflitght);
-            }
-        }
-        for (Plane plane : copenhagenAirport.getPlanes()) {
-            System.out.println("Plane in copenhagen airport departs at " + plane.getFlight().getDepartureTime().toString());
-        }
 
-        copenhagenAirport.changeDeparture(1, new Date(2022 - 1900, Calendar.DECEMBER, 24, 19, 0));
-        for (Plane plane : copenhagenAirport.getPlanes()) {
-            System.out.println("Plane in copenhagen airport departs at " + plane.getFlight().getDepartureTime().toString());
-            System.out.println("And arrives at " + plane.getFlight().getArrivalTime());
-        }
+//        copenhagenAirport.changeDeparture(newplane, new Date(2022 - 1900, Calendar.DECEMBER, 24, 19, 0));
+
     }
 }

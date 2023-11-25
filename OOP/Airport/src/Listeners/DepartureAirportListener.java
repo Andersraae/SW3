@@ -4,6 +4,7 @@ import AdministatingEntities.Airport;
 import AdministatingEntities.Flight;
 
 public class DepartureAirportListener implements FlightListener {
+
     private Airport airport;
 
     public DepartureAirportListener(Airport airport) {

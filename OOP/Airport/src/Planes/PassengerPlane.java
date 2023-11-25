@@ -10,8 +10,7 @@ public class PassengerPlane extends Plane {
 
     private Set<Passenger> passengers;
 
-    public PassengerPlane(int planeId, int passengerCapacity) {
-        super(planeId);
+    public PassengerPlane(int passengerCapacity) {
         this.passengerCapacity = passengerCapacity;
     }
 
