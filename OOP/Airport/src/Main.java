@@ -46,7 +46,7 @@ public class Main {
 
 
 
-//        copenhagenAirport.changeDeparture(newplane, new Date(2022 - 1900, Calendar.DECEMBER, 24, 19, 0));
+        copenhagenAirport.changeDeparture(newplane, new Date(2022 - 1900, Calendar.DECEMBER, 24, 19, 0));
 
     }
 }
