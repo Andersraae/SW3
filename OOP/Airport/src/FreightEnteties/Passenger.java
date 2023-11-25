@@ -5,13 +5,15 @@ import Planes.Plane;
 
 import java.util.Set;
 
-public class Passenger extends Freight {
+public class Passenger {
     private String name;
     private PassengerPlane plane;
     private Set<Baggage> baggages;
 
+    private Plane assignedPlane;
+
     public Passenger(String name, Plane assignedPlane) {
-        super(assignedPlane);
+        this.assignedPlane = assignedPlane;
         this.name = name;
     }
 
