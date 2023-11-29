@@ -1,5 +1,6 @@
 package Planes;
 
+import AdministatingEntities.Flight;
 import FreightEnteties.Passenger;
 
 import java.util.Set;

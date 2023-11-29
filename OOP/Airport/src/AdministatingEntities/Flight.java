@@ -1,5 +1,6 @@
 package AdministatingEntities;
 
+import Exceptions.NoListenersException;
 import Listeners.FlightListener;
 import Planes.FlightStatus;
 import Planes.Plane;
@@ -40,11 +41,19 @@ public class Flight {
                 FlightStatus oldStatus = Flight.this.getStatus();
                 Flight.this.updateStatus();
                 if (oldStatus != Flight.this.getStatus()){
-                    for (FlightListener listener : listeners) {
-                        listener.flightUpdate(Flight.this);
-                        System.out.println();
+                    try {
+                        if (listeners.isEmpty()){
+                            throw new NoListenersException(Flight.this);
+                        }
+                        for (FlightListener listener : listeners) {
+                            listener.flightUpdate(Flight.this);
+                            System.out.println();
+                        }
+                        for (int i = 0; i < 10; ++i) System.out.println();
+                    } catch (NoListenersException e){
+                        System.out.println("There are no listeners on the flight to " + e.getFlight().getDestination().getCity());
                     }
-                    for (int i = 0; i < 10; ++i) System.out.println();
+
                 }
             }
         };
