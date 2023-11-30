@@ -1,6 +1,7 @@
 package session12.visitors;
 
 import session12.mathexpression.MathExpression;
+import session12.mathexpression.Node;
 
 import java.util.Scanner;
 
@@ -29,6 +30,13 @@ public class A_ExerciseCountOperations {
 
 
         System.out.println("Counting the number of operations: ");
+
+        Visitor visitor = new CountOperations();
+        for (Node node: mathExpression) {
+            node.accept(visitor);
+        }
+
+        System.out.println(visitor);
 
         /***** UNCOMMENT BELOW TO PROVIDE FEEDBACK ****/
         /*

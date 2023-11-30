@@ -111,4 +111,8 @@ public class Flight {
     public Date getArrivalTime() {
         return arrivalTime;
     }
+
+    public Set<FlightListener> getListeners() {
+        return listeners;
+    }
 }

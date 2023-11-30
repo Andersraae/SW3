@@ -1,6 +1,9 @@
 package session12.mathexpression;
 
-public abstract class Node{
+import session12.visitors.Element;
+import session12.visitors.Visitor;
+
+public abstract class Node implements Element {
     protected String string;
 
     public Node(String string) {
@@ -9,5 +12,9 @@ public abstract class Node{
 
     public String getString() {
         return string;
+    }
+
+    public void accept(Visitor visitor){
+        visitor.visit(this);
     }
 }

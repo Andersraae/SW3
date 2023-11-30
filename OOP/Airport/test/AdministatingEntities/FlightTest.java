@@ -1,8 +1,10 @@
-import AdministatingEntities.FlightStatus;
+package AdministatingEntities;
+
+import Listeners.DepartureAirportListener;
+import Planes.PassengerPlane;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
-import AdministatingEntities.Flight;
 import Listeners.FlightListener;
 import Planes.Plane;
 import java.util.Date;
@@ -10,78 +12,67 @@ import java.util.Date;
 public class FlightTest {
 
     private Flight flight;
-    private Plane plane; // Assuming you have a Plane class
-    private Airport airport; // Assuming you have an Airport class
-    private FlightListener listener; // Assuming you have a FlightListener interface
+    private Plane plane;
+    private Airport departureAirport, destinationAirport;
+    private FlightListener departureListener, destinationListener;
+    private FlightStatus initialStatus;
 
     @BeforeEach
     public void setUp() {
         // Initialize your objects here
-        flight = new Flight();
-        plane = new Plane(); // Adjust as necessary
-        airport = new Airport(); // Adjust as necessary
-        listener = new FlightListener() {
-            // Implement the necessary methods
-        };
-    }
+        departureAirport = new Airport("Departure country", "Departure city", 1);
+        destinationAirport = new Airport("Destination country", "Destination city", 1);
 
-    @Test
-    public void testActivateFlight() {
-        flight.activateFlight();
-        // Example assertion
-        assertTrue(flight.isActive()); // Assuming there's an isActive method to check if flight is active
-    }
+        plane = new PassengerPlane(2);
+        Date now = new Date();
+        flight = new Flight(plane, new Date(now.getTime() + 61_000), new Date(now.getTime() + 121_000), destinationAirport);
 
-    @Test
-    public void testRun() {
-        flight.run();
-        // Assertions to check the result of run
-        assertTrue(flight.hasRun()); // Assuming hasRun() indicates if run was successful
+        initialStatus = flight.getStatus();
+
+        departureListener = new DepartureAirportListener(departureAirport);
+        destinationListener = new DepartureAirportListener(destinationAirport);
     }
 
     @Test
     public void testUpdateStatus() {
-        FlightStatus originalStatus = flight.getStatus();
         flight.updateStatus();
         FlightStatus updatedStatus = flight.getStatus();
-        assertNotEquals(originalStatus, updatedStatus); // Check if status is updated
+        assertNotEquals(initialStatus, updatedStatus);
     }
 
     @Test
     public void testAddListener() {
-        flight.addListener(listener);
-        assertTrue(flight.getListeners().contains(listener)); // Assuming getListeners() returns the set of listeners
+        flight.addListener(departureListener);
+        assertTrue(flight.getListeners().contains(departureListener));
     }
 
     @Test
     public void testGetAssignedPlane() {
-        flight.setPlane(plane); // Assuming there's a setter
         assertEquals(plane, flight.getAssignedPlane());
     }
 
     @Test
     public void testGetDestination() {
-        flight.setDestination(airport); // Assuming there's a setter
-        assertEquals(airport, flight.getDestination());
+        assertEquals(destinationAirport, flight.getDestination());
     }
 
     @Test
     public void testSetAndGetStatus() {
-        FlightStatus status = FlightStatus.IN_FLIGHT; // Example status
+        FlightStatus status = FlightStatus.IN_FLIGHT;
         flight.setStatus(status);
         assertEquals(status, flight.getStatus());
     }
 
     @Test
     public void testSetAndGetDepartureTime() {
-        Date departureTime = new Date(); // Set to some date
+        Date departureTime = new Date();
         flight.setDepartureTime(departureTime);
         assertEquals(departureTime, flight.getDepartureTime());
     }
 
     @Test
     public void testSetAndGetArrivalTime() {
-        Date arrivalTime = new Date(); // Set to some date
+        Date arrivalTime = new Date();
         flight.setArrivalTime(arrivalTime);
         assertEquals(arrivalTime, flight.getArrivalTime());
     }
