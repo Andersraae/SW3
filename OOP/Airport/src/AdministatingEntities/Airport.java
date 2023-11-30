@@ -1,6 +1,5 @@
 package AdministatingEntities;
 
-import Planes.FlightStatus;
 import Planes.Plane;
 
 import java.util.*;
@@ -82,10 +81,6 @@ public class Airport {
 
     public Set<Plane> getPlanes() {
         return planes;
-    }
-
-    public String getCountry() {
-        return country;
     }
 
     public String getCity() {

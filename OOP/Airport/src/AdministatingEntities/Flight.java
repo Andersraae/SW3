@@ -2,7 +2,6 @@ package AdministatingEntities;
 
 import Exceptions.NoListenersException;
 import Listeners.FlightListener;
-import Planes.FlightStatus;
 import Planes.Plane;
 
 import java.util.*;
@@ -11,8 +10,6 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 public class Flight {
-
-    private int flightId;
 
     private Plane assignedPlane;
 
@@ -24,8 +21,7 @@ public class Flight {
 
     private FlightStatus status;
 
-    public Flight(int flightId, Plane assignedPlane, Date departureTime, Date arrivalTime, Airport destination) {
-        this.flightId = flightId;
+    public Flight(Plane assignedPlane, Date departureTime, Date arrivalTime, Airport destination) {
         this.assignedPlane = assignedPlane;
         this.departureTime = departureTime;
         this.arrivalTime = arrivalTime;
@@ -114,9 +110,5 @@ public class Flight {
 
     public Date getArrivalTime() {
         return arrivalTime;
-    }
-
-    long getFlightTime() {
-        return arrivalTime.getTime() - departureTime.getTime();
     }
 }

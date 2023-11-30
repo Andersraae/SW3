@@ -1,4 +1,4 @@
-package Planes;
+package AdministatingEntities;
 
 public enum FlightStatus {
     INACTIVE,

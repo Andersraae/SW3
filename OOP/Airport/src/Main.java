@@ -18,7 +18,6 @@ public class Main {
         Plane newplane = new PassengerPlane(2);
         copenhagenAirport.addPlane(newplane);
         Flight cphToTarm = new Flight(
-                1,
                 newplane,
                 new Date(2022 - 1900, Calendar.DECEMBER, 24, 18, 30),
                 new Date(2022 - 1900, Calendar.DECEMBER, 24, 19, 0),
@@ -34,7 +33,6 @@ public class Main {
         tarmAirport.addPlane(anotherPlane);
         Date now = new Date();
         Flight tarmToCph = new Flight(
-                1,
                 anotherPlane,
                 new Date(now.getTime() + 62_000),
                 new Date(now.getTime() + 122_000),

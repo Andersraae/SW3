@@ -7,12 +7,11 @@ import java.util.Set;
 
 public class Passenger {
     private String name;
-    private PassengerPlane plane;
     private Set<Baggage> baggages;
 
-    private Plane assignedPlane;
+    private PassengerPlane assignedPlane;
 
-    public Passenger(String name, Plane assignedPlane) {
+    public Passenger(String name, PassengerPlane assignedPlane) {
         this.assignedPlane = assignedPlane;
         this.name = name;
     }

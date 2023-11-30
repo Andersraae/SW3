@@ -2,7 +2,7 @@ package Listeners;
 
 import AdministatingEntities.Airport;
 import AdministatingEntities.Flight;
-import Planes.FlightStatus;
+import AdministatingEntities.FlightStatus;
 
 public class DestinationAirportListener implements FlightListener {
 
